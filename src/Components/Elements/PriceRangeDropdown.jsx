@@ -59,7 +59,7 @@ const PriceRangeDropdown = () => {
             <Menu.Item
               as="li"
               key={index}
-              className="cursor-pointer hover:text-violet-700 transition"
+              className="cursor-pointer hover:text-[#F76C00] transition"
               onClick={() => setPrice(priceOption.value)}
             >
               {priceOption.value}

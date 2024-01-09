@@ -13,7 +13,7 @@ const Search = () => {
         <CountryDropdown/>
         <PropertyDropdown/>
         <PriceRangeDropdown/>
-        <button onClick={()=>handleClick()} className='bg-violet-700 hover:bg-violet-800 transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center items-center text-lg'>
+        <button onClick={()=>handleClick()} className='bg-[#F76C00] hover:bg-[#f76b00e3] transition w-full lg:max-w-[162px] h-16 rounded-lg flex justify-center items-center text-lg'>
             <RiSearch2Line/>
         </button>
     </div>

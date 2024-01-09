@@ -11,6 +11,7 @@ const PropertyCard = ({ name, image }) => {
       />
       <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 transition-transform transform translate-y-full group-hover:translate-y-0">
         <h4 className="text-sm font-semibold">{name}</h4>
+        <p>sdflkh</p>
       </div>
     </div>
   );

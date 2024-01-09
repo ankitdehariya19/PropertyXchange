@@ -4,6 +4,7 @@ import HouseList from "../Components/HouseList"
 import Header from '../Components/Header'
 import PropertiesByCitySection from '../Components/PropertiesByCitySection'
 import FeaturedPropertiesSection from '../Components/FeaturedPropertiesSection'
+import BookMyStay from '../Components/BookMyStay';
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
             {/* <HouseList/> */}
             <PropertiesByCitySection/>
             <FeaturedPropertiesSection/>
+            <BookMyStay/>
     </div>
   )
 }

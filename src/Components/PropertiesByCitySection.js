@@ -66,10 +66,10 @@ const CitiesSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-slate-200">
+    <section className="py-16 ">
       <div className="container mx-auto text-center">
 
-      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-violet-700 mb-8 underline">
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#F76C00] mb-8 ">
         Properties By City 
         </h2>
 
@@ -77,7 +77,7 @@ const CitiesSection = () => {
           Embark on a journey of discovery as you explore exceptional properties in the city of your choice. Whether you desire a serene suburban retreat or a dynamic urban dwelling, our diverse range of listings is curated to captivate your imagination. From luxurious apartments to charming homes and beyond, our platform empowers you to tailor your search according to your unique preferences.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 bg-slate-100 p-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8  p-10">
           {citiesData.map((city, index) => (
             <CityCard key={index} {...city} />
           ))}

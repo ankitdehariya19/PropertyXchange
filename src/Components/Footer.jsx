@@ -1,7 +1,7 @@
 // Footer.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/logo2.png";
 import SocialMediaButtons from "./SocialMediaButtons";
 import PropertyCard from "./PropertyCard"; // Adjust the component name as per your actual component
 import houseImage from "../assets/img/home.jpg";
@@ -65,7 +65,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center mt-8">
-        <p>&copy; 2024 BookMyStay. All rights reserved.</p>
+        <p>&copy; 2024  PropertyXchange . All rights reserved.</p>
       </div>
     </footer>
   );

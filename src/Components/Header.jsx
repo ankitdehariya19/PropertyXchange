@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from '../assets/img/logo.png';
+import Logo from '../assets/img/logo2.png';
 import useOutsideClick from './useOutsideClick';
 
 const menuItems = [
@@ -48,7 +48,7 @@ const Header = () => {
   useOutsideClick(menuRef, handleCloseSubMenu);
 
   return (
-    <header className="  bg-black bg-opacity-70">
+    <header className="  bg-black p-5  z-50">
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
         <div className="mb-4 sm:mb-0">
           <Link to="/" className="block">
@@ -60,11 +60,11 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+        <div className="flex flex-col text-white sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 z-50">
           {menuItems.map((menuItem, index) => (
             <div key={index} className="relative" ref={menuRef}>
               <button
-                className="cursor-pointer hover:text-violet-700 transition focus:outline-none active:active"
+                className="cursor-pointer hover:text-[#F76C00] transition focus:outline-none active:active"
                 onMouseEnter={() => handleHover(index)}
                 onClick={() => handleButtonClick(index)}
               >
@@ -80,11 +80,11 @@ const Header = () => {
         </div>
         <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
           <Link to="/LogIn">
-            <button className="text-white hover:text-violet-900 transition">Log In</button>
+            <button className="text-white hover:text-[#F76C00] transition">Log In</button>
           </Link>
 
           <Link to="/SignUp">
-            <button className="bg-violet-700 hover:bg-violet-800 text-white px-4 py-2 rounded-lg transition">
+            <button className="bg-[#F76C00] hover:bg-[#F76C00] text-white px-4 py-2 rounded-lg transition">
               Sign Up
             </button>
           </Link>

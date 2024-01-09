@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import Image from "../assets/img/house-banner4.jpg";
+import Image from "../assets/img/home5.jpg";
 import Search from "./Elements/Search";
 
 const TypingHeading = ({ text, interval }) => {
@@ -16,7 +16,7 @@ const TypingHeading = ({ text, interval }) => {
 
   return (
     <div className="typing-heading-container">
-      <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+      <h1 className="text-4xl lg:text-6xl font-bold mb-6 ">
         {text.slice(0, visibleCharacters)}
       </h1>
     </div>
@@ -54,28 +54,28 @@ const Banner = () => {
   };
 
   return (
-    <div className="h-screen">
-      <section style={bannerStyle} className="relative h-screen ">
+    <div className="">
+      <section style={bannerStyle} className="relative ">
         <div style={overlayStyle}></div>
         <div className="w-full absolute top-0">
-          <Header />
+          {/* <Header /> */}
         </div>
         <div className="max-w-3xl  mt-20 " style={contentStyle}>
-          <div className="w-full h-52 my-2 py-4 ">
+          <div className="w-full h-40  my-2 py-4 ">
             <TypingHeading
               text="Rent Your Dream House With Us"
               interval={100}
             />
           </div>
-          <p className=" text-gray-200 text-sm mb-5 mx-auto max-w-2xl">
+          {/* <p className=" text-gray-200 text-sm  mx-auto max-w-2xl">
             Your Ultimate Destination for Hotel Bookings! Discover a wide range
             of accommodations tailored to your preferences. From luxurious
             resorts to charming boutique hotels, find your perfect stay at the
             best prices. Start planning your dream getaway today with
             BookMyStay!
-          </p>
+          </p> */}
         </div>
-        <div className="w-full my-14 ">
+        <div className="w-full my-8 ">
           <Search className="absolute bottom-10" />
         </div>
       </section>

@@ -85,7 +85,7 @@ const CountryDropdown = () => {
                     className={`cursor-pointer px-4 py-2 ${
                       filteredCountry === country
                         ? "bg-gray-200 text-gray-800"
-                        : "cursor-pointer hover:text-violet-700 transition"
+                        : "cursor-pointer hover:text-[#F76C00] transition"
                     }`}
                   >
                     {filteredCountry}

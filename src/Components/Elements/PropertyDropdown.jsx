@@ -31,7 +31,7 @@ const PropertyDropdwn = () => {
               as='li'
               key={index}
               className='cursor-pointer
-               hover:text-violet-700 transition'>
+               hover:text-[#F76C00] transition'>
               {property}
             </Menu.Item>
           )

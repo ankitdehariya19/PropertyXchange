@@ -13,7 +13,7 @@ import BookMyStay from './Components/BookMyStay';
 const App = () => {
   return (
     <div className=' mx-auto bg-white '>
-     
+           <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/SignUp' element={<SignUp />} />
@@ -22,7 +22,6 @@ const App = () => {
         <Route path='/:type/*' element={<PropertyTypePage />} />
         <Route path='/property/:id' element={<PropertyDetails />} />
       </Routes>
-      <BookMyStay/>
       <Footer />
     </div>
   );

@@ -35,7 +35,7 @@ const CountryDropdown = () => {
   }, [isOpen]);
 
   return (
-    <div className="relative w-1/3 flex items-center justify-between">
+    <div className="relative w-1/3 flex items-center justify-between text-black">
       <div className="relative w-full" ref={dropdownRef}>
         <div className="flex items-center rounded-lg overflow-hidden  border-gray-300">
           <div className="ml-2">
@@ -46,7 +46,7 @@ const CountryDropdown = () => {
             value={country || searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onFocus={() => setIsOpen(true)}
-            className="search-input bg-transparent flex-1 px-4 py-2 focus:outline-none outline-none border-none placeholder-white text-white"
+            className="search-input bg-transparent flex-1 px-4 py-2 focus:outline-none outline-none border-none placeholder-gray-400 text-black"
             placeholder="Search for your place"
           />
 
@@ -68,7 +68,7 @@ const CountryDropdown = () => {
           </div>
         </div>
         {isOpen && searchTerm && (
-          <div className="absolute w-full mt-9 bg-black bg-opacity-80  rounded-lg shadow-md overflow-hidden">
+          <div className="absolute w-full mt-9 bg-white text-black bg-opacity-80  rounded-lg shadow-md overflow-hidden">
             {filteredCountries.length === 0 ? (
               <div className="p-2 text-gray-500">
                 No matching countries found

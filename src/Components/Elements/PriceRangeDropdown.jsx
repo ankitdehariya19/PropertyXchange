@@ -53,7 +53,7 @@ const PriceRangeDropdown = () => {
           <RiArrowDownSLine className="dropdown-icon-secondary" />
         )}
       </Menu.Button>
-      <Menu.Items className="dropdown-menu bg-black bg-opacity-70 mt-6">
+      <Menu.Items className="dropdown-menu bg-white text-black bg-opacity-70 mt-6">
         {prices.map((priceOption, index) => {
           return (
             <Menu.Item

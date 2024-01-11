@@ -1,41 +1,29 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import Image from "../assets/img/home5.jpg";
+import Image from "../assets/img/hero.jpeg";
 import Search from "./Elements/Search";
+import ButtonGroup from "./Search/ButtonGroup";
+import NestedDropdown from "./Search/NestedDropdown";
+import DependentSearch from "./Search/DependentSearch";
 
-const TypingHeading = ({ text, interval }) => {
-  const [visibleCharacters, setVisibleCharacters] = useState(0);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setVisibleCharacters((prev) => (prev < text.length ? prev + 1 : 0));
-    }, interval);
-
-    return () => clearInterval(intervalId);
-  }, [text, interval]);
-
-  return (
-    <div className="typing-heading-container">
-      <h1 className="text-4xl lg:text-6xl font-bold mb-6 ">
-        {text.slice(0, visibleCharacters)}
-      </h1>
-    </div>
-  );
-};
 
 const Banner = () => {
   const bannerStyle = {
     position: "relative",
     backgroundImage: `url(${Image})`,
     backgroundSize: "cover",
-    backgroundPosition: "center",
-    minHeight: "calc(100vh - 64px)",
+    // backgroundPosition: "center",
+    minHeight: "calc(100vh - 45vh)",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
     color: "#fff",
+    // backgroundRepeat: "no-repeat"
+    // margin: "-60px 0 0 0", 
+    padding: "20px 0 0 0" 
   };
 
   const overlayStyle = {
@@ -44,39 +32,25 @@ const Banner = () => {
     left: 0,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0, 0, 25, 0.4)",
+    backgroundColor: "rgba(247, 108, 0, 0.2)",
     zIndex: 0,
+    borderBottomLeftRadius: "40px", 
+    borderBottomRightRadius: "40px",
+    zIndex:""
   };
 
-  const contentStyle = {
-    position: "relative",
-    zIndex: 1,
-  };
 
   return (
     <div className="">
-      <section style={bannerStyle} className="relative ">
+      <section style={bannerStyle} className="relative mx-16 rounded-b-[40px] h-full ">
         <div style={overlayStyle}></div>
-        <div className="w-full absolute top-0">
-          {/* <Header /> */}
-        </div>
-        <div className="max-w-3xl  mt-20 " style={contentStyle}>
-          <div className="w-full h-40  my-2 py-4 ">
-            <TypingHeading
-              text="Rent Your Dream House With Us"
-              interval={100}
-            />
-          </div>
-          {/* <p className=" text-gray-200 text-sm  mx-auto max-w-2xl">
-            Your Ultimate Destination for Hotel Bookings! Discover a wide range
-            of accommodations tailored to your preferences. From luxurious
-            resorts to charming boutique hotels, find your perfect stay at the
-            best prices. Start planning your dream getaway today with
-            BookMyStay!
-          </p> */}
-        </div>
-        <div className="w-full my-8 ">
+  
+
+        <div className="w-full mt-20 ">
           <Search className="absolute bottom-10" />
+          {/* <ButtonGroup/> */}
+          {/* <NestedDropdown/> */}
+       
         </div>
       </section>
     </div>

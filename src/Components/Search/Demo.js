@@ -316,11 +316,11 @@ const Demo = () => {
                                 )
                               )}
 
-                              <div className="flex">
+                              {/* <div className="flex">
                                 <p>
                                   Selected Values: {selectedValues.join(", ")}
                                 </p>
-                              </div>
+                              </div> */}
                             </div>
                           )}
                         </div>
@@ -345,12 +345,12 @@ const Demo = () => {
                                 )
                               )}
 
-                              <div className="flex ">
+                              {/* <div className="flex ">
                                 <p>
                                   Selected Villa Values:{" "}
                                   {selectedVillaValues.join(", ")}
                                 </p>
-                              </div>
+                              </div> */}
                             </div>
                           )}
                         </div>
@@ -409,12 +409,12 @@ const Demo = () => {
                         </Button>
                       ))}
 
-                      <div className="flex">
+                      {/* <div className="flex">
                         <p>
                           Selected Commercial Values:{" "}
                           {selectedCommercialValues.join(", ")}
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </div>
@@ -455,12 +455,12 @@ const Demo = () => {
                         </Button>
                       ))}
 
-                      <div className="flex">
+                      {/* <div className="flex">
                         <p>
                           Selected Agricultural Values:{" "}
                           {selectedAgriculturalValues.join(", ")}
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../Elements/Button";
 import CustomRangeSelector from "../Elements/CustomRangeSelector";
 import BudgetRangeSelector from "../Elements/BudgetRangeSelector";
@@ -7,20 +8,16 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { FaHome } from "react-icons/fa";
 import { FaWallet } from "react-icons/fa";
 import { HiOutlineLocationMarker } from "react-icons/hi";
+import { sampleProperties } from "./sampleProperties";
 
 const Demo = () => {
+  const navigate = useNavigate();
   const locations = ["New York", "Los Angeles", "Chicago", "San Francisco"];
 
   const [isPropertyTypeVisible, setIsPropertyTypeVisible] = useState(false);
   const [isResidentialVisible, setIsResidentialVisible] = useState(false);
-  // const [isDivVisible, setIsDivVisible] = useState(false);
-  // const [isHouseVisible, setIsHouseVisible] = useState(false);
-  // const [isPlotVisible, setIsPlotVisible] = useState(false);
   const [isCommercialVisible, setIsCommercialVisible] = useState(false);
   const [isOtherPropertyVisible, setIsOtherPropertyVisible] = useState(false);
-  // const [selectedValues, setSelectedValues] = useState([]);
-  // const [isDivVisible, setIsDivVisible] = useState(false);
-  // const [selectedVillaValues, setSelectedVillaValues] = useState([]);
   const [selectedCommercialValues, setSelectedCommercialValues] = useState([]);
   const [selectedAgriculturalValues, setSelectedAgriculturalValues] = useState(
     []
@@ -33,7 +30,7 @@ const Demo = () => {
   const [isHouseVisible, setIsHouseVisible] = useState(false);
   const [isPlotVisible, setIsPlotVisible] = useState(false);
   const [selectedRange, setSelectedRange] = useState(null);
-
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const handleLocationSelect = (selectedLocation) => {
     console.log("Selected Location in App:", selectedLocation);
   };
@@ -65,13 +62,11 @@ const Demo = () => {
   const handleButtonClick = (value) => {
     const index = selectedValues.indexOf(value);
     if (index !== -1) {
-      // If value is already selected, remove it
       setSelectedValues([
         ...selectedValues.slice(0, index),
         ...selectedValues.slice(index + 1),
       ]);
     } else {
-      // If value is not selected, add it
       setSelectedValues([...selectedValues, value]);
     }
     setIsHouseVisible(false);
@@ -80,13 +75,11 @@ const Demo = () => {
   const handleVillaButtonClick = (value) => {
     const index = selectedVillaValues.indexOf(value);
     if (index !== -1) {
-      // If value is already selected, remove it
       setSelectedVillaValues([
         ...selectedVillaValues.slice(0, index),
         ...selectedVillaValues.slice(index + 1),
       ]);
     } else {
-      // If value is not selected, add it
       setSelectedVillaValues([...selectedVillaValues, value]);
     }
   };
@@ -94,13 +87,11 @@ const Demo = () => {
   const handleCommercialButtonClick = (value) => {
     const index = selectedCommercialValues.indexOf(value);
     if (index !== -1) {
-      // If value is already selected, remove it
       setSelectedCommercialValues([
         ...selectedCommercialValues.slice(0, index),
         ...selectedCommercialValues.slice(index + 1),
       ]);
     } else {
-      // If value is not selected, add it
       setSelectedCommercialValues([...selectedCommercialValues, value]);
     }
   };
@@ -108,19 +99,16 @@ const Demo = () => {
   const handleAgriculturalButtonClick = (value) => {
     const index = selectedAgriculturalValues.indexOf(value);
     if (index !== -1) {
-      // If value is already selected, remove it
       setSelectedAgriculturalValues([
         ...selectedAgriculturalValues.slice(0, index),
         ...selectedAgriculturalValues.slice(index + 1),
       ]);
     } else {
-      // If value is not selected, add it
       setSelectedAgriculturalValues([...selectedAgriculturalValues, value]);
     }
   };
 
   const handleRangeSelect = (selectedRange) => {
-    // Use the selectedRange in your logic (e.g., perform a search)
     console.log("Selected Range:", selectedRange);
   };
   const togglePropertyTypeVisibility = () => {
@@ -129,7 +117,7 @@ const Demo = () => {
   };
   const handleBudgetChange = (selectedBudget) => {
     setSelectedBudget(selectedBudget);
-    // Use the selectedBudget in your logic (e.g., perform a search)
+
     console.log("Selected Budget Range:", selectedBudget);
   };
   const toggleBudgetVisibility = () => {
@@ -137,16 +125,81 @@ const Demo = () => {
     setIsPropertyTypeVisible(false);
   };
   const divStyle = {
-    // backgroundColor: 'rgba(255, 255, 255, 0.2)', 
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  };
+
+  const handleSearch = () => {
+    const searchCriteria = {
+      location: selectedLocation,
+      propertyType: {
+        residential: selectedValues,
+        commercial: selectedCommercialValues,
+        villa: selectedVillaValues,
+        agricultural: selectedAgriculturalValues,
+      },
+      budget: selectedBudget,
+    };
+  
+    navigate('/search-results', { state: { searchCriteria } });
+  
+    const searchResults = sampleProperties.filter((property) => {
+      // Check location
+      if (selectedLocation && property.location !== selectedLocation) {
+        return false;
+      }
+  
+      // Check property type
+      const propertyType = getPropertyType(property);
+      if (
+        (selectedValues.length > 0 && !selectedValues.includes(propertyType)) ||
+        (selectedCommercialValues.length > 0 &&
+          !selectedCommercialValues.includes(propertyType)) ||
+        (selectedVillaValues.length > 0 &&
+          !selectedVillaValues.includes(propertyType)) ||
+        (selectedAgriculturalValues.length > 0 &&
+          !selectedAgriculturalValues.includes(propertyType))
+      ) {
+        return false;
+      }
+  
+      // Check budget
+      if (
+        property.budget < selectedBudget[0] ||
+        property.budget > selectedBudget[1]
+      ) {
+        return false;
+      }
+  
+      return true;
+    });
+  
+    console.log("Search Criteria:", searchCriteria);
+    console.log("Search Results:", searchResults);
   };
   
+
+  // Helper function to get the property type based on subtype
+  const getPropertyType = (property) => {
+    if (property.propertyType === 'Residential') {
+      return property.subtype === 'Flat' ? 'Flat' : 'House/Villa';
+    } else {
+      return property.propertyType;
+    }
+  };
+  
+
   return (
     <>
       <div className="flex flex-col mt-2  h-32 items-center w-full z-50">
-        <div className="flex   justify-around  h-20 items-center w-3/5 px-10 rounded-full z-40 " style={divStyle}>
+        <div
+          className="flex   justify-around  h-20 items-center w-3/5 px-10 rounded-full z-40 "
+          style={divStyle}
+        >
           <div className=" flex justify-center items-center w-full  h-full z-40">
-          <HiOutlineLocationMarker className="dropdown-icon-primary" size={40} />
+            <HiOutlineLocationMarker
+              className="dropdown-icon-primary"
+              size={40}
+            />
             <PropertySearchComponent
               locations={locations}
               onLocationSelect={handleLocationSelect}
@@ -187,13 +240,21 @@ const Demo = () => {
           </div>
 
           <div className=" flex justify-center items-center w-full  h-full z-40">
-            <button className="py-3 px-10 bg-orange-500 rounded-full text-white hover:bg-orange-600">search</button>
+            <button
+              className="py-3 px-10 bg-orange-500 rounded-full text-white hover:bg-orange-600"
+              onClick={handleSearch}
+            >
+              Search
+            </button>
           </div>
         </div>
         <div className="flex w-3/5 justify-between z-40">
           <div className="w-full z-50  ">
             {isPropertyTypeVisible && (
-              <div className="min-w-[650px] ml-80 h-fit   p-2   rounded-b-lg z-50" style={divStyle}>
+              <div
+                className="min-w-[650px] ml-80 h-fit   p-2   rounded-b-lg z-50"
+                style={divStyle}
+              >
                 <div className="w-full h-fit  ">
                   <h1
                     className="w-fit flex justify-center items-center gap-x-3 font-medium py-2 px-10 rounded-md transition-all transform duration-300"
@@ -209,26 +270,6 @@ const Demo = () => {
 
                   {isResidentialVisible && (
                     <div className="w-fit flex flex-col  ml-10 ">
-                      {/* <div className="flex gap-x-5 items-center justify-center bg-red-300 p-3 w-96">
-                        <Button
-                          onClick={toggleVisibility}
-                          isActive={isDivVisible}
-                        >
-                          Flat
-                        </Button>
-                        <Button
-                          onClick={toggleHouseVisibility}
-                          isActive={isHouseVisible}
-                        >
-                          House/Villa
-                        </Button>
-                        <Button
-                          onClick={togglePlotVisibility}
-                          isActive={isPlotVisible}
-                        >
-                          Plot
-                        </Button>
-                      </div> */}
                       <div className="flex gap-x-5 items-center justify-center p-3 w-96 transition-all transform duration-300 ease-in-out">
                         {[
                           {
@@ -262,42 +303,6 @@ const Demo = () => {
                           className={`ml-5  z-0  ${isDivVisible ? " " : ""}`}
                         >
                           {isDivVisible && (
-                            // <div className="ml-5 p-5 flex gap-4 ">
-                            //   <Button
-                            //     onClick={() => handleButtonClick("1bhk")}
-                            //     isActive={selectedValues.includes("1bhk")}
-                            //   >
-                            //     1bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleButtonClick("2bhk")}
-                            //     isActive={selectedValues.includes("2bhk")}
-                            //   >
-                            //     2bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleButtonClick("3bhk")}
-                            //     isActive={selectedValues.includes("3bhk")}
-                            //   >
-                            //     3bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleButtonClick("4bhk")}
-                            //     isActive={selectedValues.includes("4bhk")}
-                            //   >
-                            //     4bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleButtonClick("5bhk")}
-                            //     isActive={selectedValues.includes("5bhk")}
-                            //   >
-                            //     5bhk
-                            //   </Button>
-                            //   {/* <div className="flex">
-                            //           <p>Selected Values: {selectedValues.join(', ')}</p>
-                            //       </div> */}
-                            // </div>
-
                             <div className="ml-5 p-5 flex gap-4  ">
                               {["1bhk", "2bhk", "3bhk", "4bhk", "5bhk"].map(
                                 (bedroom, index) => (
@@ -310,11 +315,12 @@ const Demo = () => {
                                   </Button>
                                 )
                               )}
-                              {/* 
-                                 <div className="flex">
-                                          <p>Selected Values: {selectedValues.join(', ')}</p>
-                                 </div>
-                               */}
+
+                              <div className="flex">
+                                <p>
+                                  Selected Values: {selectedValues.join(", ")}
+                                </p>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -322,36 +328,6 @@ const Demo = () => {
                           className={`ml-5  z-50 ${isHouseVisible ? " " : ""}`}
                         >
                           {isHouseVisible && (
-                            // <div className="gap-x-5 p-5 flex ml-5">
-                            //   <Button
-                            //     onClick={() => handleVillaButtonClick("1bhk")}
-                            //     isActive={selectedVillaValues.includes("1bhk")}
-                            //   >
-                            //     1bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleVillaButtonClick("2bhk")}
-                            //     isActive={selectedVillaValues.includes("2bhk")}
-                            //   >
-                            //     2bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleVillaButtonClick("3bhk")}
-                            //     isActive={selectedVillaValues.includes("3bhk")}
-                            //   >
-                            //     3bhk
-                            //   </Button>
-                            //   <Button
-                            //     onClick={() => handleVillaButtonClick("4bhk")}
-                            //     isActive={selectedVillaValues.includes("4bhk")}
-                            //   >
-                            //     4bhk
-                            //   </Button>
-                            //   {/* <div className="flex ">
-                            //             <p>Selected Villa Values: {selectedVillaValues.join(', ')}</p>
-                            //       </div> */}
-                            // </div>
-
                             <div className="ml-5 p-5 flex gap-4  ">
                               {["1bhk", "2bhk", "3bhk", "4bhk", "5bhk"].map(
                                 (bedroom, index) => (
@@ -368,11 +344,13 @@ const Demo = () => {
                                   </Button>
                                 )
                               )}
-                              {/* 
-                                 <div className="flex ">
-                            <p>Selected Villa Values: {selectedVillaValues.join(', ')}</p>
-                                </div>
-                            */}
+
+                              <div className="flex ">
+                                <p>
+                                  Selected Villa Values:{" "}
+                                  {selectedVillaValues.join(", ")}
+                                </p>
+                              </div>
                             </div>
                           )}
                         </div>
@@ -431,9 +409,12 @@ const Demo = () => {
                         </Button>
                       ))}
 
-                      {/* <div className="flex">
-                      <p>Selected Commercial Values: {selectedCommercialValues.join(', ')}</p>
-                    </div> */}
+                      <div className="flex">
+                        <p>
+                          Selected Commercial Values:{" "}
+                          {selectedCommercialValues.join(", ")}
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -473,11 +454,13 @@ const Demo = () => {
                           {agriculturalType.type}
                         </Button>
                       ))}
-                      {/* 
-  <div className="flex">
-    <p>Selected Agricultural Values: {selectedAgriculturalValues.join(', ')}</p>
-  </div>
-  */}
+
+                      <div className="flex">
+                        <p>
+                          Selected Agricultural Values:{" "}
+                          {selectedAgriculturalValues.join(", ")}
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -491,7 +474,6 @@ const Demo = () => {
                 <div className="w-full justify-center hidden ">
                   Budget: ${selectedBudget[0]} - ${selectedBudget[1]}
                 </div>
-                {/* Render other components based on the selected budget range */}
               </div>
             )}
           </div>

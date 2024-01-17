@@ -52,19 +52,42 @@ const propertyTypes = [
   {
     type: 'Commercial',
     items: [
-      'Office Space',
-      'Shop/Showroom',
-      'Commercial Land',
-      'Warehouse/Godown',
-      'Industrial Building',
-      'Industrial Shed'
+      {
+        name: 'Office Space',
+      },
+      {
+        name: 'Shop/Showroom',
+
+      },
+      {
+        name: 'Commercial Land',
+
+      },
+      {
+        name: 'Warehouse/Godown',
+
+      },
+      {
+        name: 'Industrial Building',
+
+      },
+      {
+        name: 'Industrial Shed',
+
+      },
     ]
   },
   {
     type: 'Other Property Types',
     items: [
-      'Agricultural Land',
-      'Farm House'
+      {
+        name: 'Agricultural Land',
+
+      },
+      {
+        name: 'Farm House',
+
+      },
     ]
   }
 ];

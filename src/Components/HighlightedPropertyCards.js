@@ -10,41 +10,42 @@ const HomeSection = () => {
   const cardContainerStyle = {
     display: "flex",
     justifyContent: "space-between",
-    
+    maskImage:
+      "linear-gradient(to right, hsl(0 0% 0% / 0), hsl(0 0% 0% / 1) 10%, hsl(0 0% 0% / 1) 90%, hsl(0 0% 0% / 0))",
   };
 
   return (
     <section className="warapper w-full h-fit flex items-center justify-center  h-45vh overflow-hidden flex-col">
       <div className="flex justify-center">
-        <h1>sdfgasd</h1>
-        <p>asdfasd</p>
+        {/* <h1>Highlight Property</h1> */}
       </div>
-      <div className="w-fit px-6   flex justify-center items-center flex-col">
+      <div className="w-fit   flex justify-center items-center flex-col">
+        
         <div
-          className="border bg-white w-[1200px]  h-fit overflow-hidden flex  home-section-container "
+          className="  h-fit overflow-hidden flex w-[1200px]   "
           style={cardContainerStyle}
         >
-          <div className=" bg-white flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll">
+          <div className=" flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll">
             {propertyDatarow1.map((item) => (
               <HighlightProperty key={item.id} {...item} />
             ))}
           </div>
-          <div className="bg-white flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll">
+          <div className=" flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll">
             {propertyDatarow1.map((item) => (
               <HighlightProperty key={item.id} {...item} />
             ))}
           </div>
         </div>
         <div
-          className="border  w-[1200px] h-fit overflow-hidden flex  "
+          className="  h-fit overflow-hidden flex w-[1200px]   "
           style={cardContainerStyle}
         >
-          <div className="border-black flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll2">
+          <div className=" flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll2">
             {propertyDatarow2.map((item) => (
               <HighlightProperty key={item.id} {...item} />
             ))}
           </div>
-          <div className="border-black flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll2">
+          <div className=" flex-shrink-0  flex items-center justify-around whitespace-nowrap w-full overflow-hidden  home-section-scroll2">
             {propertyDatarow2.map((item) => (
               <HighlightProperty key={item.id} {...item} />
             ))}

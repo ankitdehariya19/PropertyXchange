@@ -73,7 +73,7 @@ const Banner = () => {
           minHeight: "calc(100vh - 45vh)",
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-800 via-gray-900 to-transparent opacity-70 rounded-b-[40px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-orange-600 via-orange-400 to-transparent opacity-70 rounded-b-[40px]"></div>
       </section>
 
       {/* Centered Content */}

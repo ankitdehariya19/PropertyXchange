@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const BudgetRangeSelector = ({ onBudgetChange }) => {
-  const [selectedBudget, setSelectedBudget] = useState([50000, 100000]);
+  const [selectedBudget, setSelectedBudget] = useState([50000, 200000]);
 
   const handleBudgetChange = (event, isMin) => {
     const value = parseInt(event.target.value);

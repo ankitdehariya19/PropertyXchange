@@ -53,7 +53,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MdClose } from 'react-icons/md';
 
 const PropertySearchComponent = ({
-  locations,
+  sampleProperties,
   onLocationSelect,
   setIsBudgetVisible,
   setIsPropertyTypeVisible,
@@ -61,8 +61,9 @@ const PropertySearchComponent = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedValue, setSelectedValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLocations, setSelectedLocations] = useState([]);
   const dropdownRef = useRef(null);
+
+  const locations = Array.from(new Set(sampleProperties.map(property => property.location)));
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -71,7 +72,7 @@ const PropertySearchComponent = ({
 
   const handleOptionSelect = (option) => {
     onLocationSelect(option);
-    setSelectedValue(option); // Update selected value state
+    setSelectedValue(option);
     setIsOpen(false);
   };
 
@@ -118,7 +119,10 @@ const PropertySearchComponent = ({
 
   const divStyle = {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    maxHeight: '150px', // Adjust the maximum height as needed
+    overflow: 'hidden',
   };
+  
 
   return (
     <div className="m-5 flex w-full relative" ref={dropdownRef}>
@@ -130,7 +134,7 @@ const PropertySearchComponent = ({
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           onClick={handleInputClick}
-          className="w-full p-2  rounded-md border-none outline-none bg-transparent"
+          className="w-full p-2 rounded-md border-none outline-none bg-transparent"
         />
         {selectedValue && (
           <MdClose
@@ -140,18 +144,32 @@ const PropertySearchComponent = ({
         )}
       </div>
       {isOpen && (
-        <div className="absolute mt-[60px] w-full  rounded-md shadow-md" style={divStyle}>
-          {filteredOptions.map((option) => (
-            <div
-              key={option}
-              onClick={() => handleOptionSelect(option)}
-              className={`p-2 cursor-pointer hover:bg-gray-900 ${
-                selectedValue === option ? 'bg-gray-100' : ''
-              }`}
-            >
-              {option}
-            </div>
-          ))}
+        <div className="absolute mt-[60px] w-full rounded-md shadow-md" style={divStyle}>
+          {searchTerm === '' ? (
+            locations.map((option) => (
+              <div
+                key={option}
+                onClick={() => handleOptionSelect(option)}
+                className={`p-2 cursor-pointer hover:bg-gray-900 ${
+                  selectedValue === option ? 'bg-gray-100' : ''
+                }`}
+              >
+                {option}
+              </div>
+            ))
+          ) : (
+            filteredOptions.map((option) => (
+              <div
+                key={option}
+                onClick={() => handleOptionSelect(option)}
+                className={`p-2 cursor-pointer hover:bg-gray-900 ${
+                  selectedValue === option ? 'bg-gray-100' : ''
+                }`}
+              >
+                {option}
+              </div>
+            ))
+          )}
         </div>
       )}
     </div>

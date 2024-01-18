@@ -12,7 +12,9 @@ import { sampleProperties } from "./sampleProperties";
 
 const Demo = () => {
   const navigate = useNavigate();
-  const locations = ["New York", "Los Angeles", "Chicago", "San Francisco"];
+  // const locations = ["New York", "Los Angeles", "Chicago", "San Francisco"];
+  // console.log("data",sampleProperties.location
+  // )
 
   const [isPropertyTypeVisible, setIsPropertyTypeVisible] = useState(false);
   const [isResidentialVisible, setIsResidentialVisible] = useState(false);
@@ -25,15 +27,27 @@ const Demo = () => {
   const [selectedBudget, setSelectedBudget] = useState([50000, 100000]);
   const [isBudgetVisible, setIsBudgetVisible] = useState(false);
   const [selectedValues, setSelectedValues] = useState([]);
-  const [isDivVisible, setIsDivVisible] = useState(true);
+  const [isDivVisible, setIsDivVisible] = useState(false);
   const [selectedVillaValues, setSelectedVillaValues] = useState([]);
   const [isHouseVisible, setIsHouseVisible] = useState(false);
   const [isPlotVisible, setIsPlotVisible] = useState(false);
   const [selectedRange, setSelectedRange] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const [filteredProperties, setFilteredProperties] = useState([]);
+
   const handleLocationSelect = (selectedLocation) => {
-    console.log("Selected Location in App:", selectedLocation);
+    setSelectedLocation(selectedLocation);
+
+    // Filter properties based on the selected location
+    const filteredData = sampleProperties.filter(
+      (property) => property.location.toLowerCase() === selectedLocation.toLowerCase()
+    );
+
+    // Update the filtered properties state
+    setFilteredProperties(filteredData);
   };
+  
+
   const toggleVisibility = () => {
     setIsDivVisible(!isDivVisible);
     setIsHouseVisible(false);
@@ -127,7 +141,6 @@ const Demo = () => {
   const divStyle = {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   };
-
   const handleSearch = () => {
     const searchCriteria = {
       location: selectedLocation,
@@ -140,11 +153,12 @@ const Demo = () => {
       budget: selectedBudget,
     };
   
-    navigate('/search-results', { state: { searchCriteria } });
-  
     const searchResults = sampleProperties.filter((property) => {
       // Check location
-      if (selectedLocation && property.location !== selectedLocation) {
+      if (
+        selectedLocation &&
+        property.location.toLowerCase() !== selectedLocation.toLowerCase()
+      ) {
         return false;
       }
   
@@ -175,18 +189,20 @@ const Demo = () => {
   
     console.log("Search Criteria:", searchCriteria);
     console.log("Search Results:", searchResults);
+  
+    // Navigate to search results page
+    navigate("/search-results", { state: { searchCriteria } });
   };
   
 
   // Helper function to get the property type based on subtype
   const getPropertyType = (property) => {
-    if (property.propertyType === 'Residential') {
-      return property.subtype === 'Flat' ? 'Flat' : 'House/Villa';
+    if (property.propertyType === "Residential") {
+      return property.subtype === "Flat" ? "Flat" : "House/Villa";
     } else {
       return property.propertyType;
     }
   };
-  
 
   return (
     <>
@@ -201,7 +217,7 @@ const Demo = () => {
               size={40}
             />
             <PropertySearchComponent
-              locations={locations}
+              sampleProperties={sampleProperties}
               onLocationSelect={handleLocationSelect}
               isPropertyTypeVisible={isPropertyTypeVisible}
               setIsPropertyTypeVisible={setIsPropertyTypeVisible}

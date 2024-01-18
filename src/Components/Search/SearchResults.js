@@ -1,7 +1,16 @@
 // SearchResults.js
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { sampleProperties } from './sampleProperties'; 
+import { sampleProperties } from './sampleProperties';
+
+// New PropertyCard component
+const PropertyCard = ({ property }) => (
+  <div className="border p-4 rounded mb-4">
+    <strong>{property.location}</strong> - {property.propertyType} ({property.subtype})
+    <div>Bedrooms: {property.bedrooms}</div>
+    <div>Budget: ${property.budget}</div>
+  </div>
+);
 
 const SearchResults = () => {
   const location = useLocation();
@@ -19,20 +28,23 @@ const SearchResults = () => {
     // Filtering logic based on search criteria
     const filteredResults = sampleProperties.filter(property => {
       // Check location
-      if (searchCriteria.location && property.location !== searchCriteria.location) {
+      const propertyLocation = property.location?.toLowerCase();
+      const searchLocation = searchCriteria.location?.toLowerCase();
+
+      if (searchLocation && propertyLocation !== searchLocation) {
         return false;
       }
 
       // Check property type
       const propertyType = getPropertyType(property);
       if (
-        (searchCriteria.propertyType.residential.length > 0 &&
+        (searchCriteria.propertyType.residential?.length > 0 &&
           !searchCriteria.propertyType.residential.includes(propertyType)) ||
-        (searchCriteria.propertyType.commercial.length > 0 &&
+        (searchCriteria.propertyType.commercial?.length > 0 &&
           !searchCriteria.propertyType.commercial.includes(propertyType)) ||
-        (searchCriteria.propertyType.villa.length > 0 &&
+        (searchCriteria.propertyType.villa?.length > 0 &&
           !searchCriteria.propertyType.villa.includes(propertyType)) ||
-        (searchCriteria.propertyType.agricultural.length > 0 &&
+        (searchCriteria.propertyType.agricultural?.length > 0 &&
           !searchCriteria.propertyType.agricultural.includes(propertyType))
       ) {
         return false;
@@ -53,7 +65,7 @@ const SearchResults = () => {
   }, [location.state]);
 
   // Helper function to get the property type based on subtype
-  const getPropertyType = (property) => {
+  const getPropertyType = property => {
     if (property.propertyType === 'Residential') {
       return property.subtype === 'Flat' ? 'Flat' : 'House/Villa';
     } else {
@@ -68,17 +80,11 @@ const SearchResults = () => {
       {searchResults.length === 0 ? (
         <p>No results found.</p>
       ) : (
-        <ul>
+        <div>
           {searchResults.map(property => (
-            <li key={property.id} className="mb-4">
-              <div>
-                <strong>{property.location}</strong> - {property.propertyType}
-              </div>
-              <div>Bedrooms: {property.bedrooms}</div>
-              <div>Budget: ${property.budget}</div>
-            </li>
+            <PropertyCard key={property.id} property={property} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

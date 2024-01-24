@@ -1,16 +1,8 @@
 // SearchResults.js
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import PropertyCard from '../FeaturedCard';
 import { sampleProperties } from './sampleProperties';
-
-// New PropertyCard component
-const PropertyCard = ({ property }) => (
-  <div className="border p-4 rounded mb-4">
-    <strong>{property.location}</strong> - {property.propertyType} ({property.subtype})
-    <div>Bedrooms: {property.bedrooms}</div>
-    <div>Budget: ${property.budget}</div>
-  </div>
-);
 
 const SearchResults = () => {
   const location = useLocation();
@@ -74,19 +66,18 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-4">Search Results</h2>
-
-      {searchResults.length === 0 ? (
-        <p>No results found.</p>
-      ) : (
-        <div>
-          {searchResults.map(property => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
-        </div>
-      )}
-    </div>
+    <div className="flex flex-col items-center  mx-auto mt-8">
+   <h2 className="text-3xl font-bold mb-4">Search Results</h2>
+    {searchResults.length === 0 ? (
+      <p className="text-gray-600">No results found.</p>
+    ) : (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-8  w-fit">
+        {searchResults.map((property) => (
+          <PropertyCard key={property.id} property={property} />
+        ))}
+      </div>
+    )}
+  </div>
   );
 };
 

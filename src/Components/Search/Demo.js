@@ -208,7 +208,7 @@ const Demo = () => {
     <>
       <div className="flex flex-col mt-2  h-32 items-center w-full z-50">
         <div
-          className="flex   justify-around  h-20 items-center w-3/5 px-10 rounded-full z-40 "
+          className="flex   justify-around   items-center w-3/5 px-10 rounded-full z-40 "
           style={divStyle}
         >
           <div className=" flex justify-center items-center w-full  h-full z-40">
@@ -225,10 +225,10 @@ const Demo = () => {
               setIsBudgetVisible={setIsBudgetVisible}
             />
           </div>
-          <div className=" gap-3  flex justify-center items-center w-full  h-full z-40">
+          <div className="   flex justify-center items-center w-full  h-full z-40">
             <FaHome className="dropdown-icon-primary" />
             <h1
-              className="cursor-pointer flex items-center gap-x-2"
+              className="cursor-pointer  w-40 justify-items-start flex items-center "
               onClick={togglePropertyTypeVisibility}
             >
               Property Type

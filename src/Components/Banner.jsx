@@ -64,9 +64,9 @@ import Demo from "../Components/Search/Demo";
 
 const Banner = () => {
   return (
-    <div className="relative mx-16  rounded-b-[40px] ">
+    <div className="relative mx-1 lg:mx-16  rounded-b-[40px] ">
       {/* Background Image with Gradient Overlay */}
-      <section
+      <div
         className="bg-cover bg-center bg-no-repeat relative rounded-b-[40px] overflow-hidden"
         style={{
           backgroundImage: `url(${Image})`,
@@ -74,7 +74,7 @@ const Banner = () => {
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-orange-600 via-orange-400 to-transparent opacity-70 rounded-b-[40px]"></div>
-      </section>
+      </div>
 
       {/* Centered Content */}
       <div className="absolute inset-0 flex flex-col items-center justify-end  text-white">

@@ -357,10 +357,11 @@ export const sampleProperties = [
     location: "Los Angeles",
     propertyType: "Residential",
     subtype: "Apartment",
-    bhk: 1,
+ 
     budget: 80000,
     overview: {
       updatedOn: "March 10, 2023",
+      bhk: 1,
       bedrooms: 1,
       bathrooms: 1,
       garages: 0,

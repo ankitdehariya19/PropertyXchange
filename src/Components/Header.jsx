@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../assets/img/Logo3.png';
 import useOutsideClick from './useOutsideClick';
+import PostPropertyForm from './PostPropertyForm'; 
 
 const menuItems = [
   { label: 'Buy', submenu: ['house', 'flat', 'commercial', 'plot'] },

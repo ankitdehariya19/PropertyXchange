@@ -286,6 +286,8 @@ import { Form } from "react-router-dom";
 
 
 import image from "../../assets/sampleProperties/01.jpg"
+
+
 export const sampleProperties = [
   // Property 1
   {
@@ -354,7 +356,7 @@ export const sampleProperties = [
   // Property 4
   {
     id: 4,
-    location: "Los Angeles",
+    location: "Los Angeles mehara",
     propertyType: "Residential",
     subtype: "Apartment",
  

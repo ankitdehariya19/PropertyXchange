@@ -17,8 +17,6 @@ const App = () => {
       <Route path='/' element={<Home />} />
         <Route path='/search-results' element={<SearchResults />} />
         <Route path='/PostProperty' element={<PostProperty />} />
-        {/* <Route path="/property/:propertyId" element={<PropertyDetails />} /> */}
-        {/* <Route path="/property/:id" element={PropertyDetails} /> */}
         <Route path="/property/:propertyId" element={<PropertyDetails />} />
       </Routes>
       <Footer />

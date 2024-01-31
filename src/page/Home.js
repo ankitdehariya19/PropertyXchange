@@ -1,10 +1,9 @@
-// Home.js
+
 import React from "react";
 import Banner from "../Components/Banner";
 import PropertiesByCitySection from "../Components/PropertiesByCitySection";
 import FeaturedPropertiesSection from "../Components/FeaturedPropertiesSection";
 import BookMyStay from "../Components/BookMyStay";
-import HighlightedPropertyCards from "../Components/HighlightedPropertyCards";
 import PropertySection from "../Components/PropertySection";
 
 const Home = () => {
@@ -21,8 +20,6 @@ const Home = () => {
       <div className="h-fit" style={HomeStyle}>
         <Banner />
         <div className="w-full mt-10 h-full flex justify-center ">
-          
-          {/* <HighlightedPropertyCards /> */}
           <PropertySection
             residentialCount={residentialCount}
             commercialCount={commercialCount}
@@ -30,8 +27,6 @@ const Home = () => {
           />
         </div>
       </div>
-
-      {/* Remaining Sections */}
       <PropertiesByCitySection />
       <FeaturedPropertiesSection />
       <BookMyStay />

@@ -135,13 +135,17 @@ const Demo = () => {
   // Handle location select
   const handleLocationSelect = (selectedLocation) => {
     setSelectedLocation(selectedLocation);
+  
     // Filter properties based on the selected location
     const filteredData = sampleProperties.filter(
       (property) =>
+        property.location && // Check if property.location is defined
         property.location.toLowerCase() === selectedLocation.toLowerCase()
     );
+  
     setFilteredProperties(filteredData);
   };
+  
 
   // Handle range select
   const handleRangeSelect = (selectedRange) => {

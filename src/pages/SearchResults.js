@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { sampleProperties } from '../common/sampleProperties';
 import PropertySearchCard from '../components/cards/PropertySearchCard';
 import PropertyCard from '../components/cards/PropertyCard';
+import Test2 from '../components/cards/test2';
 
 const SearchResults = () => {
   const location = useLocation();
@@ -73,11 +74,12 @@ const SearchResults = () => {
       </div>
        <div className='w-full h-full'>
         {/* <PropertyCard/> */}
+        {/* <Test2/> */}
        </div>
       {searchResults.length === 0 ? (
         <p className="text-gray-600">No results found.</p>
       ) : (
-        <div className="flex justify-center items-center w-full h-full bg-fuchsia-400">
+        <div className="flex justify-center items-center w-full h-full ">
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1  gap-x-8 gap-y-8">
           {searchResults.map((property, index) => (
             <PropertySearchCard key={index} property={property} />

@@ -2,6 +2,9 @@
 import React from "react";
 import Image from "../../assets/images/homeimg5.png";
 import Searchbox from "../Elements/Searchbox";
+import Search from "../Elements/Search/Search";
+import PropertyType from "../Elements/Search/PropertyType"
+import Demofile from "../Elements/Demofile"
 
 const Banner = () => {
   return (
@@ -21,6 +24,7 @@ const Banner = () => {
        
         <div className="flex w-full items-center justify-center z-40">
           <Searchbox />
+          {/* <Demofile/> */}
         </div>
       </div>
 

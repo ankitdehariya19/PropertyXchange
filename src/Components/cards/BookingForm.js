@@ -22,7 +22,7 @@ const BookingForm = ({ onBookingSubmit }) => {
   };
 
   return (
-    <div className=" pt-6">
+    <div className="pt-6">
       <p className="text-lg text-gray-800">
         <span className="font-semibold">Booking Information:</span>
       </p>
@@ -49,16 +49,19 @@ const BookingForm = ({ onBookingSubmit }) => {
             required
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Email (optional):</label>
-          <input
-            type="email"
-            name="email"
-            value={bookingInfo.email}
-            onChange={handleInputChange}
-            className="mt-1 p-2 w-full border focus:border-none focus:outline-none rounded-md"
-          />
-        </div>
+        {/* Use conditional rendering for the email field */}
+        {bookingInfo.email !== undefined && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Email (optional):</label>
+            <input
+              type="email"
+              name="email"
+              value={bookingInfo.email}
+              onChange={handleInputChange}
+              className="mt-1 p-2 w-full border focus:border-none focus:outline-none rounded-md"
+            />
+          </div>
+        )}
         <div>
           <label className="block text-sm font-medium text-gray-700">Additional Message:</label>
           <textarea

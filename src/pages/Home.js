@@ -5,6 +5,8 @@ import PropertiesByCitySection from "../components/section/PropertiesByCitySecti
 import FeaturedPropertiesSection from "../components/section/FeaturedPropertiesSection";
 import BookMyStay from "../components/section/BookMyStay";
 import PropertySection from "../components/section/PropertySection";
+import Hero from "../components/section/Hero";
+import Hero2 from "../components/section/Hero2";
 
 const Home = () => {
   const HomeStyle = {
@@ -16,9 +18,11 @@ const Home = () => {
   const otherCount = 20;
 
   return (
-    <div className="min-h-[1800px]">
-      <div className="h-fit" style={HomeStyle}>
-        <Banner />
+    <div className="min-h-[1800px] ">
+      <div className="h-fit " style={HomeStyle}>
+        {/* <Banner /> */}
+        {/* <Hero/> */}
+        <Hero2/>
         <div className="w-full mt-10 h-full flex justify-center ">
           <PropertySection
             residentialCount={residentialCount}

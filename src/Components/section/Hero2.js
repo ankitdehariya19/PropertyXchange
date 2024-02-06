@@ -49,7 +49,7 @@
 import React from "react";
 import image from "../../assets/images/hero2.png";
 import Searchbox from "../Elements/Searchbox";
-// import PropertyFilter from "../Elements/PropertyFilter";
+import PropertyFilter from "../Elements/PropertyFilter";
 
 const Hero2 = () => {
   return (
@@ -57,8 +57,8 @@ const Hero2 = () => {
       {/* Hero Section */}
       <div className="flex flex-col justify-between items-center sm:flex-row h-1/2 py-12">
         <div className="flex flex-col justify-center items-center text-left sm:w-2/3 pl-8 ">
-          <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-orange-500 tracking-tighter">
-            FIND YOUR PERFECT <br /> PROPERTY WITH US
+          <h1 className="text-4xl sm:text-5xl xl:text-6xl font-bold text-orange-500 tracking-tighter ">
+            FIND PERFECT <br /> PROPERTY WITH US
           </h1>
           <p className="max-w-[600px] pl-10 text-black text-sm md:text-base lg:text-lg mt-6">
             Welcome to Propertyxchange, where your dream property awaits!
@@ -86,8 +86,8 @@ const Hero2 = () => {
               </h2>
             </div>
           </div>
-          <Searchbox />
-          {/* <PropertyFilter/> */}
+          {/* <Searchbox /> */}
+          <PropertyFilter/>
         </div>
       </div>
     </div>

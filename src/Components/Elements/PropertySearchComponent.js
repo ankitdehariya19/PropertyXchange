@@ -84,11 +84,11 @@ const PropertySearchComponent = ({
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           onClick={handleInputClick}
-          className="w-full p-2 rounded-md border-none outline-none bg-transparent"
+          className="w-full p-2  text-white rounded-md border-none outline-none bg-transparent"
         />
         {selectedValue && (
           <MdClose
-            className="ml-2 text-gray-500 cursor-pointer"
+            className="ml-2 text-white cursor-pointer"
             onClick={handleRemoveSelected}
           />
         )}
@@ -100,7 +100,7 @@ const PropertySearchComponent = ({
               <div
                 key={option}
                 onClick={() => handleOptionSelect(option)}
-                className={`p-2 cursor-pointer hover:bg-gray-900 ${
+                className={`p-2 cursor-pointer text-white hover:bg-gray-900 ${
                   selectedValue === option ? 'bg-gray-100' : ''
                 }`}
               >
